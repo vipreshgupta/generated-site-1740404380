@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn & Code</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav img {
+            height: 40px;
+            margin-right: auto;
+            margin-left: 20px;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #007bff, #6c757d);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 20px;
+        }
+
+        .tutorial, .code-editor, .interactive {
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tutorial h2, .code-editor h2, .interactive h2 {
+            background: #e9ecef;
+            padding: 1rem;
+            margin: 0;
+            border-bottom: 1px solid #dee2e6;
+            color: #495057;
+        }
+
+        /* Code Editor Styles */
+        .code-editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #editor {
+            flex-grow: 1;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 10px;
+            resize: none; /* Prevent resizing */
+            min-height: 200px; /* Minimum height */
+        }
+
+        #output {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            min-height: 50px;
+            white-space: pre-wrap;
+        }
+
+        /* Interactive Elements */
+        .interactive {
+            padding: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 20px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer a {
+            color: #f8f9fa;
+        }
+
+        footer a:hover {
+            color: #adb5bd;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav img {
+                margin: 0.5rem 0;
+            }
+
+            main {
+                padding: 10px;
+            }
+        }
+        /* Button Styles */
+        .button-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <img src="https://picsum.photos/id/237/200/300" alt="Logo">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Practice</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Learn & Code</h1>
+        <p>Your journey to becoming a proficient coder starts here.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="tutorial">
+            <h2>Tutorial Section</h2>
+            <p>Start learning with our interactive tutorials. Select a language to begin!</p>
+            <select id="language-select">
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+
+            </select>
+        </section>
+        <section class="code-editor">
+            <h2>Code Editor</h2>
+            <div class="code-editor-container">
+                <textarea id="editor" placeholder="Write your code here..."></textarea>
+                <div class="button-container">
+                    <button onclick="runCode()">Run Code</button>
+                    <button onclick="clearCode()">Clear</button>
+                </div>
+                <div id="output"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Elements -->
+    <section class="interactive">
+        <h2>Interactive Challenges</h2>
+        <p>Test your knowledge with interactive quizzes and coding challenges.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Learn & Code. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function runCode() {
+            const language = document.getElementById('language-select').value;
+            const code = document.getElementById('editor').value;
+            const outputDiv = document.getElementById('output');
+
+            try {
+                if (language === 'javascript') {
+                    // Using eval for JavaScript execution
+                    let result = eval(code);
+                    outputDiv.textContent = result !== undefined ? result : 'Executed Successfully (No Output)';
+                } else if (language === 'python') {
+                    // Placeholder for Python execution (requires server-side processing)
+                    outputDiv.textContent = 'Python execution requires a server-side interpreter.';
+                } else if (language === 'html') {
+                    // Directly set HTML content
+                    outputDiv.innerHTML = code;
+                } else if (language === 'css') {
+                    // Apply CSS dynamically
+                    let styleElement = document.getElementById('dynamic-style');
+                    if (!styleElement) {
+                        styleElement = document.createElement('style');
+                        styleElement.id = 'dynamic-style';
+                        document.head.appendChild(styleElement);
+                    }
+                    styleElement.textContent = code;
+                    outputDiv.textContent = 'CSS Applied';
+                }
+            } catch (error) {
+                outputDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function clearCode() {
+            document.getElementById('editor').value = '';
+            document.getElementById('output').textContent = '';
+            const styleElement = document.getElementById('dynamic-style');
+            if (styleElement) {
+                styleElement.textContent = ''; // Clear any applied CSS
+            }
+        }
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            let placeholderText = '';
+
+            switch (selectedLanguage) {
+                case 'javascript':
+                    placeholderText = '// Write your JavaScript code here\n';
+                    break;
+                case 'python':
+                    placeholderText = '# Write your Python code here\n';
+                    break;
+                case 'html':
+                    placeholderText = '<!-- Write your HTML code here -->\n';
+                    break;
+                case 'css':
+                    placeholderText = '/* Write your CSS code here */\n';
+                    break;
+            }
+
+            document.getElementById('editor').placeholder = placeholderText;
+        });
+    </script>
+</body>
+</html>
